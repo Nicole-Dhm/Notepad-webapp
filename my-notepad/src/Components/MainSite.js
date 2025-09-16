@@ -3,7 +3,7 @@ import NoteSpace from './NotesSpace';
 import { Box, Button, Drawer} from '@mui/material';
 import { useState } from 'react';
 
-const drawerWidth = 240;
+const drawerWidth = 350;
 //core Site, the backdrop to my SPA
 function MainSite() {
   const [ open, setOpen] = useState(true); //states for drawer later
@@ -49,14 +49,17 @@ function MainSite() {
         open={open}
         sx={{
           '& .MuiDrawer-paper':{
-            width: 240,
+            width: drawerWidth,
             boxSizing: 'border-box',
             borderRight: '2px solid black',
             transition: 'border-color 0.3s ease',
           }
         }}
       >
-        {DrawerContents}
+        <Box sx={{ ml: 2}}>
+          <h2> Tasks</h2>
+          {DrawerContents}
+        </Box>
       </Drawer>
     </Box>
     
