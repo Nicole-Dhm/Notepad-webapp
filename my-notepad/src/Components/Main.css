@@ -1,12 +1,6 @@
 /* To do css file */
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
-}
-
-.MainSite {
-    font-size: large;
+    background: rgb(231, 176, 176);
+    font-family: sans-serif, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
