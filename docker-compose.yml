@@ -1,26 +1,26 @@
 version: '3.8'
 services:
   db:
-    image: postgres
+    image: notepad-webapp-backend
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mysecretpassword
-      POSTGRES_DB: postgres
+      notepad-webapp-backend_USER: notepad-webapp-backend
+      notepad-webapp-backend_PASSWORD: mysecretpassword
+      notepad-webapp-backend_DB: notepad-webapp-backend
     ports:
       - "5432:5432"
     volumes:
-      - my_pgdata:/var/lib/postgresql/data
+      - my_pgdata:/var/lib/notepad-webapp-backendql/data
 
   backend:
     build: 
-      context: ./backend\demo
+      context: ./backend
     ports:
       - "8080:8080"
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
-      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_URL: jdbc:notepad-webapp-backendql://db:5432/notepad-webapp-backend
+      SPRING_DATASOURCE_USERNAME: notepad-webapp-backend
       SPRING_DATASOURCE_PASSWORD: mysecretpassword
 
 volumes:
