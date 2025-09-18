@@ -1,7 +1,10 @@
 import './Main.css';
 import NoteSpace from './NotesSpace';
-import { Box, Button, Drawer} from '@mui/material';
+import { Box, Button, Drawer, useTheme} from '@mui/material';
 import { useState } from 'react';
+import Header from './Header';
+import { DoubleArrow } from '@mui/icons-material';
+import RightSpace from './RightSpace';
 
 const drawerWidth = 350;
 //core Site, the backdrop to my SPA
@@ -16,52 +19,77 @@ function MainSite() {
   const DrawerContents = (
     <Box>Im a Box</Box>
   );
+  const theme = useTheme();
   return (
-    <Box sx={{ display: 'flex', height: '100', width: '100%'}}>
-      <Box sx={{ flexGrow: 1, p:2 , transition : 'margin 0.3s ease', marginLeft: open ? `${drawerWidth}px`: 0 , height: '100%' }}>
-        <NoteSpace />
-      </Box>
-      
-      {/* Drawer in here cause that's lowkey easier */}
-      {/* Toggle button */}
-      <Button
-        variant='contained'
-        onClick={toggleDrawer(!open)}
-        sx={{ 
-          position: 'absolute', 
-          maxHeight: 30,
-          maxWidth: 45,
-          fontSize: 'small',
-          top: 16,
-          border: '1.5px solid rgba(238, 192, 192, 1)',
-          backgroundColor: 'rgba(112, 71, 71, 1)',
-          left: open ? drawerWidth - 25 : 5,
-          borderRadius: 25,
-          zIndex: 1300,
-          transition: 'left 0.3s ease',
-        }}
-      >
-        <strong>{open ? 'Close' : 'Open'}</strong>
-      </Button>
-      <Drawer
-        variant='persistent'
-        anchor='left'
-        open={open}
-        sx={{
-          '& .MuiDrawer-paper':{
-            width: drawerWidth,
-            boxSizing: 'border-box',
-            borderRight: '2px solid black',
-            transition: 'border-color 0.3s ease',
-          }
-        }}
-      >
-        <Box sx={{ ml: 2}}>
-          <h2> Tasks</h2>
-          {DrawerContents}
+      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100%', bgcolor: theme.palette.background.default}}>
+        <Box sx={{ flexShrink: 0, zIndex: 1400, alignContent: 'center'}}>
+          <Header />
         </Box>
-      </Drawer>
-    </Box>
+        <Box sx={{ display: 'flex', flexGrow: 1, width: '100%' }}>
+          <Box sx={{ display: 'flex', flexGrow: 1, p:2 , transition : 'margin 0.3s ease', marginLeft: open ? `${drawerWidth}px`: 0 , height: '100%' }}>
+            <NoteSpace />
+          </Box>
+          
+          {/* Drawer in here cause that's lowkey easier */}
+          {/* Toggle button */}
+          <Button
+            variant='contained'
+            onClick={toggleDrawer(!open)}
+            sx={{ 
+              position: 'fixed', 
+              height: 50,
+              width: 100,
+              minWidth: 0,
+              pl: 7,
+              fontSize: '0.7rem',
+              top: 72,
+              border: '2px solid',
+              borderColor: theme.palette.primary.main,
+              borderLeft: 'none',
+              outline: 'none',
+              backgroundColor: theme.palette.background.paper,
+              left: open ? `calc(${drawerWidth}px - 50px)` : -50,
+              borderRadius: 20,
+              //zIndex: 1300, just embrace it ig
+              transition: 'left 0.3s ease',
+              '&hover': {
+                backgroundColor: theme.palette.primary.dark,
+                cursor: 'pointer',
+              }
+            }}
+          >
+            <DoubleArrow style={{ 
+              color: theme.palette.primary.main,
+              transform: open ? 'rotate(0deg)': 'rotate(180deg)',
+              transition: 'transform 0.3 ease'}}/> 
+          </Button>
+          <Drawer
+            variant='persistent'
+            anchor='left'
+            open={open}
+            sx={{
+              '& .MuiDrawer-paper':{
+                width: drawerWidth,
+                boxSizing: 'border-box',
+                borderRight: '2px solid',
+                boxShadow: 2,
+                backgroundColor: theme.palette.background.paper,
+                borderColor: theme.palette.primary.main,
+                transition: 'border-color 0.3s ease',
+              }
+            }}
+          >
+            <Box sx={{ ml: 2, mt: 8 }}>
+              <h2> Tasks</h2>
+              {DrawerContents}
+            </Box>
+          </Drawer>
+
+          <Box sx={{ flexShrink: 0, minWidth: 400, height: '100%', p: 2, boxSizing: 'border-box'}}>
+            <RightSpace />
+          </Box>
+        </Box>
+      </Box>
     
   );
 }

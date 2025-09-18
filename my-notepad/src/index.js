@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import MainSite from './Components/MainSite.js';
 import reportWebVitals from './reportWebVitals.js';
+import ThemeWrapper from './Components/ThemeWrapper.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <MainSite />
-  </React.StrictMode>
+  <ThemeWrapper >
+    <React.StrictMode>
+      <MainSite />
+    </React.StrictMode>
+  </ThemeWrapper>
 );
 
 // If you want to start measuring performance in your app, pass a function
