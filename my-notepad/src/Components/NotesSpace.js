@@ -13,7 +13,7 @@ export default function NoteSpace() {
                     borderRadius: 5,
                     p: 2,
                     m: 5,
-                    mr: 50,
+                    mr: 5,
                     bgcolor: 'background.paper',
                 }}>
                 <h3>Your Notes</h3>

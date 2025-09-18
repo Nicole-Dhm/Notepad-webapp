@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { theme } from './CustomThemes';
 import Header from './Header';
 import { DoubleArrow } from '@mui/icons-material';
+import RightSpace from './RightSpace';
 
 const drawerWidth = 350;
 //core Site, the backdrop to my SPA
@@ -37,9 +38,10 @@ function MainSite() {
             onClick={toggleDrawer(!open)}
             sx={{ 
               position: 'fixed', 
-              height: 60,
-              width: 40,
+              height: 50,
+              width: 100,
               minWidth: 0,
+              pl: 7,
               fontSize: '0.7rem',
               top: 72,
               border: '2px solid',
@@ -47,8 +49,8 @@ function MainSite() {
               borderLeft: 'none',
               outline: 'none',
               backgroundColor: theme.palette.background.paper,
-              left: open ? `calc(${drawerWidth}px - 2px)` : 0,
-              borderRadius: open ? '0 20px 20px 0' : '0 20px 20px 0',
+              left: open ? `calc(${drawerWidth}px - 50px)` : -50,
+              borderRadius: 20,
               //zIndex: 1300, just embrace it ig
               transition: 'left 0.3s ease',
               '&hover': {
@@ -71,6 +73,7 @@ function MainSite() {
                 width: drawerWidth,
                 boxSizing: 'border-box',
                 borderRight: '2px solid',
+                boxShadow: 2,
                 backgroundColor: theme.palette.background.paper,
                 borderColor: theme.palette.primary.main,
                 transition: 'border-color 0.3s ease',
@@ -82,6 +85,10 @@ function MainSite() {
               {DrawerContents}
             </Box>
           </Drawer>
+
+          <Box sx={{ flexShrink: 0, minWidth: 400, height: '100%', p: 2, boxSizing: 'border-box'}}>
+            <RightSpace />
+          </Box>
         </Box>
       </Box>
     </ThemeProvider>
