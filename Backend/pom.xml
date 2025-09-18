@@ -44,8 +44,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.notepad-webapp-backendql</groupId>
-			<artifactId>notepad-webapp-backendql</artifactId>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>

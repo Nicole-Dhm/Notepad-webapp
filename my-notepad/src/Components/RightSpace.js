@@ -1,15 +1,14 @@
-import { Box, ThemeProvider } from "@mui/material";
-import { theme } from './CustomThemes';
+import { Box, useTheme } from "@mui/material";
 
 export default function RightSpace() {
+    const theme = useTheme();
     return (
-        <ThemeProvider theme= {theme}>
             <Box sx={{
                 display: 'flex', 
                 flexDirection: 'column', 
                 gap: 4, 
                 height: '100%',
-                p:2
+                p:1
                  }}>
                 <Box sx={{ 
                     border: '2px solid',
@@ -30,6 +29,5 @@ export default function RightSpace() {
                     <h3> Timer </h3>
                 </Box>
             </Box>
-        </ThemeProvider>
     );
 };

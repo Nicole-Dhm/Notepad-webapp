@@ -1,10 +1,10 @@
-import { Box, ThemeProvider } from "@mui/material"
-import { theme } from "./CustomThemes"
+import { Box } from "@mui/material";
 import { Today } from "@mui/icons-material";
+import { useTheme } from "@emotion/react";
 
 export default function Header() {
+    const theme = useTheme();
     return (
-        <ThemeProvider theme = {theme}>
             <Box sx= {{ 
                 height: 60, 
                 display: 'flex',
@@ -35,6 +35,5 @@ export default function Header() {
                         M
                     </Box>
             </Box>
-        </ThemeProvider>
     );
 };

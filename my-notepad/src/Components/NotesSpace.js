@@ -1,9 +1,8 @@
-import { Box, List, ListItem, ThemeProvider } from '@mui/material';
-import { theme } from './CustomThemes';
+import { Box, List, ListItem, useTheme } from '@mui/material';
 
 export default function NoteSpace() {
+    const theme = useTheme();
     return (
-        <ThemeProvider theme = { theme }>
             <Box
                 component={'main'}
                 sx={{
@@ -21,6 +20,5 @@ export default function NoteSpace() {
                     <ListItem> I'm a Note </ListItem> 
                 </List>
             </Box>
-        </ThemeProvider>
     );
 };

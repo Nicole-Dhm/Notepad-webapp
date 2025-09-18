@@ -1,8 +1,7 @@
 import './Main.css';
 import NoteSpace from './NotesSpace';
-import { Box, Button, Drawer, ThemeProvider} from '@mui/material';
+import { Box, Button, Drawer, useTheme} from '@mui/material';
 import { useState } from 'react';
-import { theme } from './CustomThemes';
 import Header from './Header';
 import { DoubleArrow } from '@mui/icons-material';
 import RightSpace from './RightSpace';
@@ -20,9 +19,9 @@ function MainSite() {
   const DrawerContents = (
     <Box>Im a Box</Box>
   );
+  const theme = useTheme();
   return (
-    <ThemeProvider theme={ theme }>
-      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100%'}}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', width: '100%', bgcolor: theme.palette.background.default}}>
         <Box sx={{ flexShrink: 0, zIndex: 1400, alignContent: 'center'}}>
           <Header />
         </Box>
@@ -60,7 +59,7 @@ function MainSite() {
             }}
           >
             <DoubleArrow style={{ 
-              color: theme.palette.primary.dark,
+              color: theme.palette.primary.main,
               transform: open ? 'rotate(0deg)': 'rotate(180deg)',
               transition: 'transform 0.3 ease'}}/> 
           </Button>
@@ -91,7 +90,6 @@ function MainSite() {
           </Box>
         </Box>
       </Box>
-    </ThemeProvider>
     
   );
 }
