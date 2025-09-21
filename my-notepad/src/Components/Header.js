@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import { Today } from "@mui/icons-material";
 import { useTheme } from "@emotion/react";
+import Settings from "./SettingsInterface";
 
 export default function Header() {
     const theme = useTheme();
@@ -21,19 +22,7 @@ export default function Header() {
                         <Today /> 
                     </Box>
                     <h1 style={{ margin: 0 }}>Melonotes</h1>
-                    <Box sx={{ 
-                        borderRadius: '50%', 
-                        bgcolor: 'white', 
-                        height: 40, width: 40, 
-                        display: 'flex', 
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        fontWeight: 'bold',
-                        color: 'black',
-                        cursor: 'pointer',
-                        }}> 
-                        M
-                    </Box>
+                    <Settings />
             </Box>
     );
 };
