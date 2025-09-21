@@ -10,7 +10,13 @@ export default function Settings() {
     const open = Boolean(anchorEl);
 
     const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+        //toggle behaviour for avatar
+        if (open){
+            setAnchorEl(null);
+        }
+        else {
+            setAnchorEl(event.currentTarget);
+        }
     };
     const handleClose = () => {
         setAnchorEl(null);
@@ -27,7 +33,9 @@ export default function Settings() {
                         aria-haspopup= 'true'
                         aria-expanded={ open ? 'true': undefined}
                     >
-                        <Avatar sx={{ width: 40, height: 40 }}>M</Avatar>
+                        <Avatar 
+                            sx={{ width: 40, height: 40 }}>
+                        </Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>
