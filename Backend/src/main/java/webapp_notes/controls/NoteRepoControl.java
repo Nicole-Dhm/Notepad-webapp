@@ -17,7 +17,7 @@ import webapp_notes.services.NoteServices;
 
 @RestController
 @RequestMapping("/api/notes")
-@CrossOrigin(origins = "http://localhost:3000") // tell CORS my frontend is a-ok
+@CrossOrigin // tell CORS my frontend is a-ok
 public class NoteRepoControl {
     private final NoteServices service; //connect the service
 
@@ -25,7 +25,7 @@ public class NoteRepoControl {
         this.service = service;
     };
 
-    @GetMapping
+    @GetMapping("/api/notes")
     public List<Note> getAllNotes(){
         return service.findAll();
     };
