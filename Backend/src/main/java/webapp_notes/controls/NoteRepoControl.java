@@ -25,7 +25,7 @@ public class NoteRepoControl {
         this.service = service;
     };
 
-    @GetMapping("/api/notes")
+    @GetMapping
     public List<Note> getAllNotes(){
         return service.findAll();
     };
