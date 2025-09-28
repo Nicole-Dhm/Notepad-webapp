@@ -1,4 +1,5 @@
 import { Box, List, ListItem, useTheme } from '@mui/material';
+import Notes from './Notes';
 
 export default function NoteSpace() {
     const theme = useTheme();
@@ -17,7 +18,7 @@ export default function NoteSpace() {
                 }}>
                 <h3>Your Notes</h3>
                 <List>
-                    <ListItem> I'm a Note </ListItem> 
+                    <Notes />
                 </List>
             </Box>
     );
