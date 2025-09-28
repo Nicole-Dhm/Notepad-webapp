@@ -15,8 +15,9 @@ export default function RightSpace() {
                     flex: '0 0 250px',
                     borderRadius: 5, 
                     bgcolor: theme.palette.background.paper, 
-                    borderColor: theme.palette.primary.main }}>
-                    <h3> Calender </h3>
+                    borderColor: theme.palette.primary.main,
+                    pl: 2 }}>
+                    <h3> Calendar </h3>
                 </Box>
 
                 <Box sx={{ 
@@ -25,7 +26,8 @@ export default function RightSpace() {
                     borderRadius: 5, 
                     color: theme.palette.primary.contrastText,
                     bgcolor: theme.palette.background.paper, 
-                    borderColor: theme.palette.primary.main }}>
+                    borderColor: theme.palette.primary.main,
+                    pl:2 }}>
                     <h3> Timer </h3>
                 </Box>
             </Box>

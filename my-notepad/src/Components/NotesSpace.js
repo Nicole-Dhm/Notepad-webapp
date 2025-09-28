@@ -1,4 +1,4 @@
-import { Box, List, ListItem, useTheme } from '@mui/material';
+import { Box, List, useTheme } from '@mui/material';
 import Notes from './Notes';
 
 export default function NoteSpace() {
