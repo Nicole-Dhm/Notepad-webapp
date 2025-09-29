@@ -2,10 +2,14 @@ import { ListItem, useTheme, Stack, Box, IconButton, Tooltip } from '@mui/materi
 import { useState, useEffect } from 'react';
 import { alpha } from '@mui/material';
 import { RemoveCircle } from '@mui/icons-material';
+import ConfirmDialog from '../Dialogs/ConfirmDialog';
 
 export default function Notes(){
     const [notes, setNotes] = useState([]);
     const theme = useTheme();
+    //for the Dialog
+    const [open, setOpen] = useState(false);
+    const [selectedNote, setSelectedNote] = useState(null);
     
     //get notes for display and iterating
     const currentNotes = async() => {
@@ -20,7 +24,7 @@ export default function Notes(){
     };
     useEffect(()=> {
         currentNotes();
-    }) 
+    }, []) 
 
     //Deleting a note
     const handleDelete = async(id) => {
@@ -34,6 +38,7 @@ export default function Notes(){
             console.error(e)
         }
     }
+    
     return(
         <>
         {/*Generate the List Items I pop back in in the NotesSpace */}
@@ -76,8 +81,12 @@ export default function Notes(){
             </strong>
             </Box>
             <Tooltip title= 'Delete Note'>
+                {/*Setting the active note and delegating the deletion to the confirm dialog */}
                 <IconButton
-                    onClick={()=> handleDelete(note.id)}>
+                    onClick={()=> {setSelectedNote(note.id); setOpen(true)}}
+                    sx={{
+                        cursor: 'pointer'
+                    }}>
                     <RemoveCircle
                         sx={{
                             color: theme.palette.primary.dark,
@@ -89,6 +98,14 @@ export default function Notes(){
             </Tooltip>
             </ListItem>
         ))}
+
+        <ConfirmDialog
+            open={open}
+            onClose={() => setOpen(false)}
+            onConfirm={() =>{ handleDelete(selectedNote); setOpen(false)}}
+            title= 'Delete Note'
+            input='This is irreversible, the note will be lost. Do you wish to continue?'
+        ></ConfirmDialog>
         </>
     )
 }
