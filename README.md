@@ -1,0 +1,3 @@
+This is a Note Webapp in Progress. Some of the planned and in progress features include: Timer Function, Task Creation, Note Creation, Database for Users and their Notes and Tasks, Login feature, user auth, Calendar...
+
+**Used Frameworks /Plugins /important Libraries etc:** React, Spring Boot, PostgresSQL, Docker, Material UI
