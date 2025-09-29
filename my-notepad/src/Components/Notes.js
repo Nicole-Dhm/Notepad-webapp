@@ -1,10 +1,10 @@
 import { ListItem, useTheme, Stack, Box, IconButton, Tooltip } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { alpha } from '@mui/material';
-import { RemoveCircle } from '@mui/icons-material';
+import { EditNote, RemoveCircle } from '@mui/icons-material';
 import ConfirmDialog from '../Dialogs/ConfirmDialog';
 
-export default function Notes(){
+export default function Notes({handleEdit}){
     const [notes, setNotes] = useState([]);
     const theme = useTheme();
     //for the Dialog
@@ -80,6 +80,9 @@ export default function Notes(){
                 })}
             </strong>
             </Box>
+            <IconButton onClick={() => handleEdit(note)}>
+                <EditNote />
+            </IconButton>
             <Tooltip title= 'Delete Note'>
                 {/*Setting the active note and delegating the deletion to the confirm dialog */}
                 <IconButton
