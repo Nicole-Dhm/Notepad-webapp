@@ -5,11 +5,17 @@ import { useState } from 'react';
 import Header from './Header';
 import { DoubleArrow } from '@mui/icons-material';
 import RightSpace from './RightSpace';
+import EditSpace from './EditSpace';
 
 const drawerWidth = 350;
 //core Site, the backdrop to my SPA
 function MainSite() {
   const [ open, setOpen] = useState(true); //states for drawer later
+  const [ editing, setEditing ] = useState(null); //using this to swicth between components
+
+  const handleCreateNote = () => setEditing({ id: 0, title: '', content: '', createdAt: new Date().toLocaleString()});
+  const handleEditNote = (note) => setEditing(note);
+  const handleExit = () => setEditing(null);
   
   //function to modify more expandable and more reliable 
   const toggleDrawer = (newOpen) => () => {
@@ -27,7 +33,11 @@ function MainSite() {
         </Box>
         <Box sx={{ display: 'flex', flexGrow: 1, width: '100%' }}>
           <Box sx={{ display: 'flex', flexGrow: 1, p:2 , transition : 'margin 0.3s ease', marginLeft: open ? `${drawerWidth}px`: 0 , height: '100%' }}>
-            <NoteSpace />
+            { editing ? (
+              <EditSpace note={editing} onExit={handleExit}/>
+            ): (
+              <NoteSpace handleCreate={handleCreateNote} handleEdit={handleEditNote} />
+            )}
           </Box>
           
           {/* Drawer in here cause that's lowkey easier */}
