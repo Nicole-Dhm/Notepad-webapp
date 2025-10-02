@@ -3,3 +3,11 @@ body {
     margin: 0;
     font-family: sans-serif, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+.ProseMirror {
+    outline: none;
+    height: 600px;
+    padding: 10px;
+    font-family: sans-serif;
+    word-break: break-word;
+}

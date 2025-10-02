@@ -48,41 +48,53 @@ export default function Notes({handleEdit}){
             sx={{
                 border: '2px solid',
                 borderColor: theme.palette.primary.dark,
-                backgroundColor: alpha(theme.palette.primary.main, 0.3),
+                backgroundColor: alpha(theme.palette.primary.main, 0.5),
                 borderRadius: 2,
-                height: 100,
+                height: 120,
                 mb: 2,
-                pt: 2,
+                pt: 1,
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'flex-start',
-                px: 2,
+                px: 1,
                 position: 'relative'
             }}>
             <Stack direction={'column'} gap={1} sx={{ flexGrow: 1}}>
-                <strong>{note.title}</strong>
-                {note.content}
+                <strong>
+                <IconButton onClick={() => handleEdit(note)}>
+                    <EditNote />
+                </IconButton>
+                {note.title}</strong>
+                <Box 
+                    onClick={() => handleEdit(note)}
+                    sx={{ 
+                        pl: 2,
+                        backgroundColor: theme.palette.background.paper,
+                        borderRadius: 2,
+                        height: 50,
+                        cursor: 'pointer' }}>
+                    {note.content}
+                </Box>
             </Stack>
             <Box sx={{
                 fontSize: 12,
                 alignSelf: 'flex-end'
             }}>
                 {/*Custom Date Time format, Timestamp will become dynamic later */}
+            <Box sx={{ pl: 1 }}>
                 <strong>
-                Date: {new Date(note.createdAt).toLocaleString('en-GB',{
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false,
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                })}
-            </strong>
+                    Last Edited: {new Date(note.createdAt).toLocaleString('en-GB',{
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: false,
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    })}
+                </strong>
             </Box>
-            <IconButton onClick={() => handleEdit(note)}>
-                <EditNote />
-            </IconButton>
+            </Box>
             <Tooltip title= 'Delete Note'>
                 {/*Setting the active note and delegating the deletion to the confirm dialog */}
                 <IconButton

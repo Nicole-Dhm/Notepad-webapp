@@ -1,12 +1,39 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography, Stack } from "@mui/material";
 import { useTheme } from "@emotion/react";
 import { KeyboardBackspace } from "@mui/icons-material";
+import { useState } from "react";
+import { EditorContent, useEditor } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import './Main.css';
+import MenuBarTipTap from "./MenuBarTiptap";
 
 export default function EditSpace({note, onExit}) {
+    //update note information using states, for accepting user input
+    const [title, setTitle] = useState(note.title);
     const theme = useTheme();
+
+    let initcontent = '';
+
+    try {
+        initcontent = note.content ? JSON.parse(note.content) : '';
+    } catch(e) {
+        initcontent = note.content || '';
+    };
+
+    //directly make an editor instance
+    const editor = useEditor({
+        extensions: [StarterKit],
+        //show the stored note content if it has any
+        content: initcontent,
+        onUpdate: ({ editor }) => {
+            const json = editor.getJSON();
+            const jsonAsString = JSON.stringify(json);
+            //TODO database connection to save the JSON
+        }
+    });
     return (
         <Box
-                component={'main'}
+            component={'main'}
                 sx={{
                     flexGrow: 1,
                     border: '2px solid',
@@ -51,9 +78,25 @@ export default function EditSpace({note, onExit}) {
                     {/*Just here to space evenly with space-between */}
                     <Box sx={{ width: 40, height: 40 }}></Box>
                 </Box>
-                <Box>Id: {note.id}</Box>
-                <Box> Title: {note.title} </Box>
-                <Box> Content: {note.content} </Box>
+                <Stack direction={'row'} gap={1}>
+                    <strong>Title:</strong>
+                    <TextField
+                        value= {title}
+                        type='search'
+                        variant= 'standard'
+                        onChange={(e)=>{setTitle(e.target.value)}}
+                        placeholder='Give your Note a Title...'
+                        fullWidth
+                        size='small'
+                        >
+                    </TextField>
+                </Stack>
+                <Stack direction={'column'} >
+                    <Box sx={{ flexGrow: 1, border: '2px solid', p:1, height: 600, borderRadius: 2, borderColor: theme.palette.primary.dark }}>
+                        <MenuBarTipTap editor = {editor} />
+                        <EditorContent editor = {editor} />
+                    </Box>
+                </Stack>
                 <Box> Date: {note.createdAt}</Box>
         </Box>
     )
