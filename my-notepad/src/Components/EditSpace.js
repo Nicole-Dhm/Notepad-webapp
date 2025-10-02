@@ -6,6 +6,7 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import './Main.css';
 import MenuBarTipTap from "./MenuBarTiptap";
+import { Highlight } from '@tiptap/extension-highlight';
 
 export default function EditSpace({note, onExit}) {
     //update note information using states, for accepting user input
@@ -22,7 +23,7 @@ export default function EditSpace({note, onExit}) {
 
     //directly make an editor instance
     const editor = useEditor({
-        extensions: [StarterKit],
+        extensions: [StarterKit, Highlight.configure({ multicolor: true, HTMLAttributes: { style: 'border-radius: 5px; padding: 2px'}})],
         //show the stored note content if it has any
         content: initcontent,
         onUpdate: ({ editor }) => {
@@ -92,7 +93,7 @@ export default function EditSpace({note, onExit}) {
                     </TextField>
                 </Stack>
                 <Stack direction={'column'} >
-                    <Box sx={{ flexGrow: 1, border: '2px solid', p:1, height: 600, borderRadius: 2, borderColor: theme.palette.primary.dark }}>
+                    <Box sx={{ flexGrow: 1, border: '2px solid', p:1, height: 600, borderRadius: 2, borderColor: theme.palette.primary.dark, m: 2 }}>
                         <MenuBarTipTap editor = {editor} />
                         <EditorContent editor = {editor} />
                     </Box>
