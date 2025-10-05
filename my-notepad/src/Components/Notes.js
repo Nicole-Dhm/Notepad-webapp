@@ -81,7 +81,7 @@ export default function Notes({handleEdit}){
                 alignSelf: 'flex-end'
             }}>
                 {/*Custom Date Time format, Timestamp will become dynamic later */}
-            <Box sx={{ pl: 1 }}>
+            <Box sx={{ pl: 1, color: theme.palette.primary.dark }}>
                 <strong>
                     Last Edited: {new Date(note.createdAt).toLocaleString('en-GB',{
                         hour: '2-digit',

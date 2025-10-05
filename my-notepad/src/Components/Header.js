@@ -46,8 +46,26 @@ export default function Header() {
     }, []);
     
     return (
+        <Box sx={{
+            height: 60,
+            position: 'relative'
+            }}> 
+            <Box sx={{ 
+                height: 60,
+                width: '100%', 
+                position: 'absolute', 
+                zIndex: 1600, 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                color: 'white',
+                fontFamily: 'cambria'}}>
+                <h1 sx= {{ margin: 0 }}>Melonotes</h1>
+            </Box>
             <Box sx= {{ 
-                height: 60, 
+                height: 60,
+                position: 'absolute',
+                width: '100%',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center', 
@@ -66,8 +84,8 @@ export default function Header() {
                             <span>{time}</span>
                         </Stack>
                     </Box>
-                    <h1 style={{ margin: 0 }}>Melonotes</h1>
                     <Settings />
             </Box>
+        </Box>
     );
 };
