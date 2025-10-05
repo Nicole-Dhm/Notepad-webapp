@@ -6,6 +6,7 @@ import Header from './Header';
 import { DoubleArrow } from '@mui/icons-material';
 import RightSpace from './RightSpace';
 import EditSpace from './EditSpace';
+import  { motion, AnimatePresence } from 'framer-motion';
 
 const drawerWidth = 350;
 //core Site, the backdrop to my SPA
@@ -33,11 +34,31 @@ function MainSite() {
         </Box>
         <Box sx={{ display: 'flex', flexGrow: 1, width: '100%' }}>
           <Box sx={{ display: 'flex', flexGrow: 1, p:2 , transition : 'margin 0.3s ease', marginLeft: open ? `${drawerWidth}px`: 0 , height: '100%' }}>
-            { editing ? (
-              <EditSpace note={editing} onExit={handleExit}/>
-            ): (
-              <NoteSpace handleCreate={handleCreateNote} handleEdit={handleEditNote} />
-            )}
+            <AnimatePresence mode={'wait'}>
+              { editing ? (
+                <motion.div
+                  key={'edit'}
+                  initial= {{ opacity: 0, x: 50 }}
+                  animate= {{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  style={{ display: 'flex', width: '100%', height: '100%', flexGrow: 1 }}
+                  >
+                  <EditSpace note={editing} onExit={handleExit}/>
+                </motion.div>
+              ): (
+                <motion.div
+                  key={'notes'}
+                  initial={{ opacity: 1, x: 50 }}
+                  animate= {{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  style={{ display: 'flex', width: '100%', height: '100%', flexGrow: 1 }}
+                  >
+                  <NoteSpace handleCreate={handleCreateNote} handleEdit={handleEditNote} />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </Box>
           
           {/* Drawer in here cause that's lowkey easier */}
